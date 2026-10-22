@@ -1,0 +1,234 @@
+/*
+ * Tokens de design — coffee-web-project
+ *
+ * Feito para Tailwind CSS v4 (configuração CSS-first via @theme).
+ * Importe DEPOIS do Tailwind em app/globals.css:
+ *
+ *   @import "tailwindcss";
+ *   @import "../docs/design/tokens/tokens.css";
+ *
+ * Camadas:
+ *   1. Primitivos  (@theme)         → paleta, tipo, raio, movimento. Geram utilitários (bg-espresso, text-h2, rounded-panel…).
+ *   2. Semânticos  (:root / tema)   → papéis de cor que mudam entre os temas "papel" (claro) e "torra" (escuro).
+ *   3. Ponte       (@theme inline)  → expõe os semânticos como utilitários (bg-surface, text-ink, border-rule…).
+ *
+ * Regra: componentes usam a camada semântica. Primitivos só aparecem em blocos de cor de marca (Panel, LetterPattern).
+ */
+
+/* ───────────────────────── 1. Primitivos ───────────────────────── */
+
+@theme {
+  /* Paleta da marca — nomes tirados do próprio café.
+     A paleta padrão do Tailwind é desligada para que zinc/slate/etc. não vazem para a interface. */
+  --color-*: initial;
+  --color-espresso: #1e1410; /* fundo escuro, texto principal no claro */
+  --color-roast: #2c211b; /* superfície elevada no escuro, letras do padrão */
+  --color-oxblood: #3d110e; /* bloco de cor profundo (papelaria, destaque sóbrio) */
+  --color-crema: #ebd9bf; /* creme do copo; texto no escuro, superfície elevada no claro */
+  --color-paper: #f5f0e7; /* fundo claro, papel da sacola */
+  --color-olive: #4b5531; /* acento principal; ação de marca */
+  --color-moss: #3e4a26; /* hover do oliva */
+  --color-rose: #d48a92; /* acento secundário; só preenchimento, nunca texto sobre claro */
+  --color-cacao: #6e5a4c; /* texto secundário no claro */
+  --color-steam: #b9a894; /* texto secundário no escuro */
+  --color-ember: #a3352b; /* erro / destrutivo */
+
+  /* Tipografia — variáveis criadas pelo next/font em app/layout.tsx */
+  --font-sans: var(--font-instrument-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-bowlby-one), var(--font-instrument-sans), ui-sans-serif, sans-serif;
+
+  /* Escala tipográfica (escala clássica de Bringhurst: 12·14·16·18·21·24·36·48·60–96) */
+  --text-caption: 0.75rem;
+  --text-caption--line-height: 1.4;
+  --text-small: 0.875rem;
+  --text-small--line-height: 1.45;
+  --text-body: 1rem;
+  --text-body--line-height: 1.55;
+  --text-lead: 1.125rem;
+  --text-lead--line-height: 1.5;
+  --text-h4: 1.3125rem;
+  --text-h4--line-height: 1.3;
+  --text-h3: 1.5rem;
+  --text-h3--line-height: 1.2;
+  --text-h2: clamp(1.75rem, 1.2rem + 2.2vw, 2.25rem);
+  --text-h2--line-height: 1.08;
+  --text-h1: clamp(2.25rem, 1.4rem + 3.4vw, 3rem);
+  --text-h1--line-height: 1.04;
+  --text-display: clamp(3.75rem, 2rem + 7vw, 6rem);
+  --text-display--line-height: 0.92;
+  --text-poster: clamp(5rem, 1.5rem + 14vw, 12rem);
+  --text-poster--line-height: 0.82;
+
+  --tracking-tagline: 0.005em; /* caixa-alta das taglines: quase neutro, como na referência */
+  --tracking-display: -0.01em;
+
+  /* Medidas de texto e contêineres */
+  --container-prose: 36rem; /* ~65 caracteres em 16px */
+  --container-page: 84rem;
+
+  /* Raios — hierarquia, não um valor único */
+  --radius-control: 6px; /* botões, campos */
+  --radius-card: 18px; /* cards de produto, story tiles */
+  --radius-panel: 28px; /* blocos de cor do bento */
+
+  /* Sombra — só para camadas sobrepostas (drawer, modal, toast) */
+  --shadow-overlay: 0 24px 48px -16px rgb(30 20 16 / 0.45);
+
+  /* Movimento */
+  --ease-pour: cubic-bezier(0.2, 0.7, 0.2, 1); /* desacelera como café assentando */
+  --ease-snap: cubic-bezier(0.3, 0, 0.2, 1);
+  --animate-rule-draw: rule-draw 640ms var(--ease-pour) both;
+  --animate-rise: rise 480ms var(--ease-pour) both;
+
+  @keyframes rule-draw {
+    from {
+      transform: scaleX(0);
+    }
+    to {
+      transform: scaleX(1);
+    }
+  }
+
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(0.4em);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}
+
+/* ───────────────────────── 2. Semânticos ───────────────────────── */
+
+:root,
+[data-theme="paper"] {
+  --surface-base: var(--color-paper);
+  --surface-raised: var(--color-crema);
+  --surface-inverse: var(--color-espresso);
+  --ink: var(--color-espresso);
+  --ink-muted: var(--color-cacao);
+  --ink-inverse: var(--color-crema);
+  --rule: color-mix(in oklab, var(--color-espresso) 70%, transparent);
+  --rule-soft: color-mix(in oklab, var(--color-espresso) 18%, transparent);
+  --action: var(--color-espresso);
+  --action-hover: var(--color-oxblood);
+  --action-ink: var(--color-crema);
+  --focus: var(--color-olive);
+  --danger: var(--color-ember);
+
+  --duration-fast: 120ms;
+  --duration-base: 200ms;
+  --duration-slow: 360ms;
+
+  --gutter: clamp(1rem, 0.5rem + 2.5vw, 2.5rem);
+  --section-gap: clamp(4rem, 2rem + 8vw, 9rem);
+  --panel-pad: clamp(1.25rem, 0.75rem + 2.5vw, 3rem);
+  --bento-gap: clamp(0.75rem, 0.5rem + 1vw, 1.5rem);
+
+  color-scheme: light;
+}
+
+[data-theme="roast"] {
+  --surface-base: var(--color-espresso);
+  --surface-raised: var(--color-roast);
+  --surface-inverse: var(--color-crema);
+  --ink: var(--color-crema);
+  --ink-muted: var(--color-steam);
+  --ink-inverse: var(--color-espresso);
+  --rule: color-mix(in oklab, var(--color-crema) 60%, transparent);
+  --rule-soft: color-mix(in oklab, var(--color-crema) 16%, transparent);
+  --action: var(--color-crema);
+  --action-hover: var(--color-paper);
+  --action-ink: var(--color-espresso);
+  --focus: var(--color-rose);
+  --danger: #e07a6e;
+
+  color-scheme: dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="paper"]) {
+    --surface-base: var(--color-espresso);
+    --surface-raised: var(--color-roast);
+    --surface-inverse: var(--color-crema);
+    --ink: var(--color-crema);
+    --ink-muted: var(--color-steam);
+    --ink-inverse: var(--color-espresso);
+    --rule: color-mix(in oklab, var(--color-crema) 60%, transparent);
+    --rule-soft: color-mix(in oklab, var(--color-crema) 16%, transparent);
+    --action: var(--color-crema);
+    --action-hover: var(--color-paper);
+    --action-ink: var(--color-espresso);
+    --focus: var(--color-rose);
+    --danger: #e07a6e;
+
+    color-scheme: dark;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --duration-fast: 0ms;
+    --duration-base: 0ms;
+    --duration-slow: 0ms;
+  }
+}
+
+/* ───────────────────────── 3. Ponte para utilitários ───────────────────────── */
+
+@theme inline {
+  --color-surface: var(--surface-base);
+  --color-surface-raised: var(--surface-raised);
+  --color-surface-inverse: var(--surface-inverse);
+  --color-ink: var(--ink);
+  --color-ink-muted: var(--ink-muted);
+  --color-ink-inverse: var(--ink-inverse);
+  --color-rule: var(--rule);
+  --color-rule-soft: var(--rule-soft);
+  --color-action: var(--action);
+  --color-action-hover: var(--action-hover);
+  --color-action-ink: var(--action-ink);
+  --color-focus: var(--focus);
+  --color-danger: var(--danger);
+
+  --spacing-gutter: var(--gutter);
+  --spacing-section: var(--section-gap);
+  --spacing-panel: var(--panel-pad);
+  --spacing-bento: var(--bento-gap);
+}
+
+/* ───────────────────────── Base ───────────────────────── */
+
+@layer base {
+  body {
+    background: var(--surface-base);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    line-height: var(--text-body--line-height);
+    font-feature-settings: "ss01", "tnum" 0;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 3px;
+  }
+
+  ::selection {
+    background: var(--color-rose);
+    color: var(--color-espresso);
+  }
+}
+
+@utility tagline {
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-tagline);
+  font-weight: 500;
+}
+
+@utility measure {
+  max-width: var(--container-prose);
+}

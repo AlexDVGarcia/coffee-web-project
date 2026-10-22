@@ -1,0 +1,31 @@
+Categoria,Nome,Descrição,Preço,Selo
+Bebidas de expresso,Expresso ADVG,"Dose curta do nosso blend da casa, com notas de chocolate amargo e caramelo.",7.50,Favorito da casa
+Bebidas de expresso,Expresso duplo,"Duas doses do blend da casa, encorpado e com crema espessa.",10.90,
+Bebidas de expresso,Ristretto,"Extração curta e concentrada, mais doce e menos amarga que o expresso.",7.90,
+Bebidas de expresso,Macchiato,Expresso marcado com uma colher de espuma de leite vaporizado.,9.50,
+Bebidas de expresso,Cortado,Expresso e leite vaporizado em partes iguais. Servido em copo de 120 ml.,11.90,
+Bebidas de expresso,Cappuccino,"Expresso, leite vaporizado e espuma cremosa, finalizado com cacau em pó.",14.90,Popular
+Bebidas de expresso,Flat white,Dose dupla de ristretto com leite vaporizado de textura sedosa e pouca espuma.,16.50,Favorito da casa
+Bebidas de expresso,Latte de baunilha,Expresso com leite vaporizado e xarope de baunilha feito na casa.,17.90,
+Bebidas de expresso,Mocha,"Expresso, chocolate meio amargo derretido e leite vaporizado, com chantilly.",18.50,
+Bebidas geladas,Cold brew,"Café extraído a frio por 18 horas, servido com gelo. Suave, com notas de frutas secas.",15.90,Popular
+Bebidas geladas,Cold brew tônica,"Cold brew sobre água tônica e gelo, com casca de laranja.",18.90,Favorito da casa
+Bebidas geladas,Iced latte,Expresso duplo sobre gelo e leite gelado. Peça com leite de aveia sem custo extra.,16.90,
+Bebidas geladas,Affogato,Bola de sorvete de creme coberta com uma dose de expresso quente.,17.50,
+Bebidas geladas,Frappé de caramelo salgado,"Café, leite, gelo batido e caramelo salgado, com chantilly e flor de sal.",21.90,Popular
+Bebidas geladas,Matcha latte gelado,Matcha japonês batido com leite e servido sobre gelo.,19.90,
+Bebidas geladas,Chá gelado de hibisco,"Infusão de hibisco, maçã e canela, levemente adoçada com mel.",12.90,
+Doces,Pão de queijo,Porção com 4 unidades de pão de queijo mineiro saindo do forno.,9.90,Popular
+Doces,Croissant de manteiga,"Massa folhada com manteiga francesa, crocante por fora e macia por dentro.",12.50,
+Doces,Pain au chocolat,Massa de croissant recheada com duas barras de chocolate meio amargo.,14.50,
+Doces,Bolo de cenoura com brigadeiro,Fatia de bolo de cenoura fofinho coberto com brigadeiro cremoso.,13.90,Favorito da casa
+Doces,Cookie de chocolate,"Cookie de massa amanteigada com gotas de chocolate belga e flor de sal.",10.90,
+Doces,Cheesecake de frutas vermelhas,Base de biscoito amanteigado e creme de cream cheese com calda de frutas vermelhas.,19.50,
+Doces,Torrada de banana e canela,"Brioche tostado com banana caramelizada, canela e mel.",16.90,
+Sanduíches,Misto quente na chapa,Pão de forma artesanal com presunto e queijo prato tostado na manteiga.,15.90,Popular
+Sanduíches,Croissant de presunto e queijo,Croissant de manteiga recheado com presunto cozido e queijo gruyère gratinado.,22.90,
+Sanduíches,Pão na chapa com requeijão,Pão francês tostado na chapa com manteiga e requeijão cremoso.,8.90,
+Sanduíches,Caprese no focaccia,"Focaccia da casa com muçarela de búfala, tomate, manjericão e pesto.",26.90,Favorito da casa
+Sanduíches,Frango com pesto,"Pão ciabatta com frango desfiado, pesto de manjericão, rúcula e tomate seco.",27.50,
+Sanduíches,Toast de avocado,"Pão de fermentação natural com avocado amassado, ovo poché e pimenta calabresa.",29.90,Popular
+Sanduíches,Wrap vegano de grão-de-bico,"Tortilha integral com homus, grão-de-bico assado, cenoura, pepino e folhas.",24.90,
