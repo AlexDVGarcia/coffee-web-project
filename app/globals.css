@@ -1,2 +1,130 @@
 @import "tailwindcss";
 @import "../docs/design/tokens/tokens.css";
+
+/* Chat do N8N (app/_components/N8nChat.tsx).
+   O pacote resolve os padrões no :root (vários apontam para branco), então cada variável
+   usada é redefinida aqui com os tokens semânticos, e o widget acompanha os temas papel e torra. */
+.n8n-chat {
+  --chat--font-family: var(--font-sans);
+  --chat--spacing: 1rem;
+  --chat--border-radius: var(--radius-control);
+  --chat--transition-duration: var(--duration-base);
+  --chat--color-typing: var(--ink-muted);
+  --chat--color-disabled: var(--ink-muted);
+
+  /* Janela: fica abaixo do cabeçalho do site (z-40) e acima da bolha. */
+  --chat--window--width: min(400px, calc(100vw - 2rem));
+  --chat--window--height: min(600px, calc(100dvh - 11rem));
+  --chat--window--bottom: 1rem;
+  --chat--window--right: 1rem;
+  --chat--window--margin-bottom: 0.75rem;
+  --chat--window--z-index: 50;
+  --chat--window--border: 1px solid var(--rule-soft);
+  --chat--window--border-radius: var(--radius-card);
+
+  --chat--header--background: var(--surface-raised);
+  --chat--header--color: var(--ink);
+  --chat--header--padding: 1rem 1.25rem;
+  --chat--header--border-bottom: 1px solid var(--rule-soft);
+  --chat--heading--font-size: var(--text-h4);
+  --chat--subtitle--font-size: var(--text-small);
+  --chat--subtitle--line-height: var(--text-small--line-height);
+
+  --chat--body--background: var(--surface-base);
+  --chat--messages-list--padding: 1.25rem;
+  --chat--message--font-size: var(--text-body);
+  --chat--message-line-height: var(--text-body--line-height);
+  --chat--message--padding: 0.75rem 1rem;
+  --chat--message--border-radius: var(--radius-card);
+  --chat--message--margin-bottom: 0.5rem;
+  --chat--message--bot--background: var(--surface-raised);
+  --chat--message--bot--color: var(--ink);
+  --chat--message--bot--border: none;
+  --chat--message--user--background: var(--action);
+  --chat--message--user--color: var(--action-ink);
+  --chat--message--user--border: none;
+  --chat--message--pre--background: var(--rule-soft);
+  --chat--message--actions--color: var(--ink-muted);
+
+  --chat--footer--background: var(--surface-base);
+  --chat--footer--color: var(--ink-muted);
+  --chat--footer--border-top: 1px solid var(--rule-soft);
+  --chat--footer--padding: 0.75rem;
+
+  --chat--input--container--background: var(--surface-raised);
+  --chat--input--container--border: 1px solid var(--rule-soft);
+  --chat--input--container--border-radius: var(--radius-control);
+  --chat--input--container--padding: 0;
+  --chat--input--background: transparent;
+  --chat--input--text-color: var(--ink);
+  --chat--input--font-size: var(--text-body);
+  --chat--input--padding: 0.75rem;
+  --chat--input--border-radius: var(--radius-control);
+  --chat--textarea--height: 2.75rem;
+  --chat--textarea--max-height: 8rem;
+  --chat--input--button--border-radius: var(--radius-control);
+  --chat--input--send--button--background: var(--action);
+  --chat--input--send--button--color: var(--action-ink);
+  --chat--input--send--button--background-hover: var(--action-hover);
+  --chat--input--send--button--color-hover: var(--action-ink);
+  --chat--input--file--button--background: transparent;
+  --chat--input--file--button--color: var(--ink-muted);
+  --chat--input--file--button--background-hover: var(--rule-soft);
+  --chat--input--file--button--color-hover: var(--ink);
+
+  --chat--toggle--size: 3.5rem;
+  --chat--toggle--background: var(--color-olive);
+  --chat--toggle--hover--background: var(--color-moss);
+  --chat--toggle--active--background: var(--color-moss);
+  --chat--toggle--color: var(--color-paper);
+}
+
+.n8n-chat .chat-window-wrapper .chat-window {
+  box-shadow: var(--shadow-overlay);
+}
+
+.n8n-chat .chat-layout .chat-header {
+  gap: 0.25rem;
+}
+
+.n8n-chat .chat-layout .chat-header h1 {
+  font-family: var(--font-display);
+  letter-spacing: var(--tracking-display);
+  text-transform: uppercase;
+}
+
+.n8n-chat .chat-layout .chat-header p {
+  color: var(--ink-muted);
+}
+
+.n8n-chat .chat-layout .chat-body {
+  scrollbar-width: thin;
+  scrollbar-color: var(--rule) transparent;
+}
+
+.n8n-chat .chat-input .chat-inputs {
+  align-items: center;
+  transition: border-color var(--duration-fast) var(--ease-snap);
+}
+
+.n8n-chat .chat-input .chat-inputs:focus-within {
+  border-color: var(--focus);
+}
+
+.n8n-chat .chat-input .chat-inputs textarea::placeholder {
+  color: var(--ink-muted);
+  opacity: 1;
+}
+
+.n8n-chat .chat-input .chat-input-send-button {
+  width: 2.25rem;
+  height: 2.25rem;
+  margin: 0.25rem;
+  font-size: 1.125rem;
+}
+
+.n8n-chat .chat-window-wrapper .chat-window-toggle:focus-visible,
+.n8n-chat .chat-input .chat-input-send-button:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}

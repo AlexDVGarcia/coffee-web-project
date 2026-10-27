@@ -73,7 +73,7 @@ export function getMenu(): MenuItem[] {
     if (index === -1) throw new Error(`menu-items.csv: coluna "${name}" não encontrada`);
     return index;
   };
-  const c = { category: col("Categoria"), name: col("Nome"), description: col("Descrição"), price: col("Preço"), badge: col("Selo") };
+  const c = { category: col("Categoria"), name: col("Nome"), description: col("Descricao"), price: col("Preco"), badge: col("Selo") };
 
   return rows.map((row) => {
     const slug = slugify(row[c.name]);
@@ -102,6 +102,14 @@ export function getCategories(): MenuCategory[] {
   }
   return [...categories.values()];
 }
+
+/** Frase de abertura de cada categoria, usada na página do cardápio e no assistente. */
+export const categoryIntros: Record<string, string> = {
+  "Bebidas de expresso": "Nosso blend da casa, torrado em pequenos lotes. Leite vegetal sem custo extra.",
+  "Bebidas geladas": "Para as tardes quentes da Serra. Cold brew extraído a frio por 18 horas.",
+  Doces: "Feitos todas as manhãs pela Kátia. Quando acaba, acabou.",
+  Sanduíches: "Lanches leves, montados na hora com pães de fermentação natural e da chapa.",
+};
 
 export function getPopular() {
   return getMenu().filter((item) => item.badge === "Popular");

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Bowlby_One, Instrument_Sans } from "next/font/google";
+import { N8nChat } from "./_components/N8nChat";
 import { ReservationProvider } from "./_components/Reservation";
 import { SiteFooter } from "./_components/SiteFooter";
 import { SiteHeader } from "./_components/SiteHeader";
@@ -35,6 +36,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           <main className="flex-1">{children}</main>
           <SiteFooter />
         </ReservationProvider>
+        <N8nChat />
       </body>
     </html>
   );
